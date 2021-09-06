@@ -23,7 +23,9 @@ app.post("/YoutubeMusicDownloaderPost", (req, res) => {
     const URL = req.fields["URL"];
     const fileName = req.fields["fileName"];
 
-    exec("./backEnd/youtubeMusicDownload.sh " + URL + " " + fileName, (err, stdout, stderr) => {
+    console.log("bash backEnd/youtubeMusicDownload.sh " + URL + " " + fileName);
+    
+    exec("bash backEnd/youtubeMusicDownload.sh " + URL + " " + fileName, (err, stdout, stderr) => {
 
         console.log(stdout);
         res.download(__dirname + "/backEnd/music/" + fileName + ".mp3");
