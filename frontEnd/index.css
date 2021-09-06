@@ -1,0 +1,20 @@
+.nav {
+
+    background-color: #333;
+    color: #aaa;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+}
+
+a {
+
+    color: #aaa;
+
+}
+
+a:hover {
+
+    color:#aaa;
+
+}
