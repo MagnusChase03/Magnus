@@ -1,5 +1,6 @@
 const express = require("express");
 const formidable = require("express-formidable");
+const { exec } = require("child_process");
 
 const app = express();
 app.use(express.static(__dirname + "/frontEnd"));
@@ -22,7 +23,12 @@ app.post("/YoutubeMusicDownloaderPost", (req, res) => {
     const URL = req.fields["URL"];
     const fileName = req.fields["fileName"];
 
-    console.log("Attempt at " + URL);
+    exec("./backEnd/youtubeMusicDownload.sh " + URL + " " + fileName, (err, stdout, stderr) => {
+
+        console.log(stdout);
+        res.download(__dirname + "/backEnd/music/" + fileName + ".mp3");
+
+    });
     
 });
 
