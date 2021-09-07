@@ -40,4 +40,22 @@ app.post("/YoutubeMusicDownloaderPost", (req, res) => {
     
 });
 
+app.get("/ProfessorSearch", (req, res) => {
+
+    res.sendFile(__dirname + "/frontEnd/ProfessorSearch.html");
+    
+});
+
+app.post("/ProfessorSearchPost", (req, res) => {
+
+    const name = req.fields["name"];
+
+    exec("java backEnd.ProfessorSearch " + name, (err, stdout, stderr) => {
+
+        console.log(stdout);
+
+    });
+
+});
+
 app.listen(3000, "0.0.0.0");
