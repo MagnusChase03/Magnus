@@ -7,9 +7,7 @@ RUN wget http://ftp.us.debian.org/debian/pool/main/y/youtube-dl/youtube-dl_2021.
 RUN apt -y install python3-pkg-resources
 RUN dpkg -i youtube-dl_2021.06.06-1_all.deb
 RUN apt -y install ffmpeg
-RUN apt -y install openjdk-16-jdk
-RUN apt -y install openjdk-16-jre
+RUN apt -y install python3
 COPY . .
-RUN javac backEnd/ProfessorSearch.java
 EXPOSE 3000
 CMD ["node", "server.js"]

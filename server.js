@@ -50,7 +50,7 @@ app.post("/ProfessorSearchPost", (req, res) => {
 
     const name = req.fields["name"];
 
-    exec("java backEnd.ProfessorSearch " + name, (err, stdout, stderr) => {
+    exec("python3 backEnd/ProfessorSearch.py " + name, (err, stdout, stderr) => {
 
         console.log(stdout);
 
