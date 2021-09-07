@@ -12,6 +12,12 @@ app.get("/", (req, res) => {
     
 });
 
+app.get("/Apps", (req, res) => {
+
+    res.sendFile(__dirname + "/frontEnd/Apps.html");
+    
+});
+
 app.get("/YoutubeMusicDownloader", (req, res) => {
 
     res.sendFile(__dirname + "/frontEnd/YoutubeMusicDownloader.html");
