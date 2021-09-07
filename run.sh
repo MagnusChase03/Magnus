@@ -1,1 +1,1 @@
-docker run -p 3000:3000 -d --name magnushub magnushub
+docker run --network host -d --name magnushub magnushub
