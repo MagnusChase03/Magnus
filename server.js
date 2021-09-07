@@ -1,5 +1,7 @@
 const express = require("express");
 const formidable = require("express-formidable");
+const fs = require("fs");
+const parser = require("node-html-parser").parse;
 const { exec } = require("child_process");
 
 const app = express();
@@ -48,11 +50,50 @@ app.get("/ProfessorSearch", (req, res) => {
 
 app.post("/ProfessorSearchPost", (req, res) => {
 
-    const name = req.fields["name"];
+    const schoolName = req.fields["school"];
+    const professorName = req.fields["name"];
+    const index = req.fields["index"];
 
-    exec("python3 backEnd/ProfessorSearch.py " + name, (err, stdout, stderr) => {
+    exec("python3 backEnd/ProfessorSearch.py " + professorName + " " + index, (err, stdout, stderr) => {
 
-        console.log(stdout);
+        if (err) {
+
+            console.log(err);
+
+        }
+        
+        const professorData = stdout;
+        console.log(professorData);
+
+        fs.readFile("frontEnd/ProfessorSearch.html", "utf8", (err, html) => {
+         
+            const webPage = parser(html);
+         
+            const content = webPage.querySelector('#form');
+
+            const professorDataSplit = professorData.split("/");
+            
+            htmlResults = "";
+            for (var i = 0; i < professorDataSplit.length; i++) {
+
+                if (i == 0) {
+
+                    htmlResults += "<hr><h3>" + professorDataSplit[i] + "</h3>";
+
+
+                } else {
+
+                    htmlResults += "<p>" + professorDataSplit[i] + "</p>";
+
+                }
+
+            }
+
+            content.set_content(content.toString() + htmlResults);
+         
+            res.send(webPage.toString());
+
+        });
 
     });
 
