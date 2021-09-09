@@ -99,4 +99,10 @@ app.post("/ProfessorSearchPost", (req, res) => {
 
 });
 
+app.get("/AboutMe", (req, res) => {
+
+    res.sendFile(__dirname + "/frontEnd/AboutMe.html");
+
+});
+
 app.listen(3000, "0.0.0.0");
