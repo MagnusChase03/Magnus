@@ -1,0 +1,2 @@
+# Magnus
+My personal website
