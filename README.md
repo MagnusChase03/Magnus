@@ -1,2 +1,0 @@
-# MagnusHub
-My personal website.
